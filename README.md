@@ -4,7 +4,7 @@
 
 Currently I am working on a manuscript titled "Samu in His Prenatal Development" where I want to establish a definition of a mathematical machine for learning. It is for this reason that I have made various experiments on the subject.
 
-The project called SamuBrain is an implementation of a version of the definition in question. In this experiment, I have been investigating the possibility of developing a "cognitive mental organ" which is called Mental Processing Unit (or briefly MPU) in the terminology of the sources of the project: https://github.com/nbatfai/SamuBrain
+The project called SamuBrain is an implementation of a version of the definition in question. In this experiment, I have been investigating the possibility of developing a "cognitive mental organ" which is called Mental Processing Unit (or briefly MPU) in the terminology of the sources of this project.
 
 An MPU consisting of two lattices, one input and one output lattice. The input lattice (called reality) represents the perception of the agent. Each cell of the output lattice (called Samu's predictions) is equipped with a COP-based[*] SAMU engine[+] to predict the next state of the corresponding input cell. Three different inputs are shown to the agent in the experiment:
 
