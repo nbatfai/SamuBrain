@@ -14,8 +14,8 @@ An MPU consisting of two lattices, one input and one output lattice. The input l
 
 The agent must learn and recognize these complex patterns. It is shown in video at https://youtu.be/_W0Ep2HpJSQ
 
-[*]: http://arxiv.org/abs/1108.2865
-[+]: http://arxiv.org/abs/1511.02889
+[COP]: http://arxiv.org/abs/1108.2865
+[SAMU]: http://arxiv.org/abs/1511.02889
 
 ## Usage
 
