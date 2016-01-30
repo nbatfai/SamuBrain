@@ -38,6 +38,7 @@ tail -f out|grep SENSITIZATION
 ```
 tail -f out|grep "HABITUATION MONITOR" 
 ```
+![screenshot from 2016-01-30 21-50-44](https://cloud.githubusercontent.com/assets/3148120/12698416/fe0e6020-c79b-11e5-897c-1bb74afba1c3.png)
 
 [https://youtu.be/_W0Ep2HpJSQ](https://youtu.be/_W0Ep2HpJSQ)
 
