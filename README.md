@@ -6,16 +6,15 @@ Currently I am working on a manuscript titled "Samu in His Prenatal Development"
 
 The project called SamuBrain is an implementation of a version of the definition in question. In this experiment, I have been investigating the possibility of developing a "cognitive mental organ" which is called Mental Processing Unit (or briefly MPU) in the terminology of the sources of this project.
 
-An MPU consisting of two lattices, one input and one output lattice. The input lattice (called reality) represents the perception of the agent. Each cell of the output lattice (called Samu's predictions) is equipped with a COP-based[*] SAMU engine[+] to predict the next state of the corresponding input cell. Three different inputs are shown to the agent in the experiment:
+An MPU consisting of two lattices, one input and one output lattice. The input lattice (called reality) represents the perception of the agent. Each cell of the output lattice (called Samu's predictions) is equipped with 
+a [COP-based](http://arxiv.org/abs/1108.2865)
+[SAMU engine](http://arxiv.org/abs/1511.02889) to predict the next state of the corresponding input cell. Three different inputs are shown to the agent in the experiment:
 
 1. 5 gliders move in the input lattice in accordance with Conway's Game of Life (https://github.com/nbatfai/SamuLife)
 2. 9 simple "pictures" are shown (https://github.com/nbatfai/SamuStroop)
 3. a simple "film" is shown (https://github.com/nbatfai/SamuMovie)
 
 The agent must learn and recognize these complex patterns. It is shown in video at https://youtu.be/_W0Ep2HpJSQ
-
-[COP]: http://arxiv.org/abs/1108.2865
-[SAMU]: http://arxiv.org/abs/1511.02889
 
 ## Usage
 
