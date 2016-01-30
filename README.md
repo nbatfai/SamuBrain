@@ -8,9 +8,9 @@ The project called SamuBrain is an implementation of a version of the definition
 
 An MPU consisting of two lattices, one input and one output lattice. The input lattice (called reality) represents the perception of the agent. Each cell of the output lattice (called Samu's predictions) is equipped with a COP-based[*] SAMU engine[+] to predict the next state of the corresponding input cell. Three different inputs are shown to the agent in the experiment:
 
--1) 5 gliders move in the input lattice in accordance with Conway's Game of Life (https://github.com/nbatfai/SamuLife)
--2) 9 simple "pictures" are shown (https://github.com/nbatfai/SamuStroop)
--3) a simple "film" is shown (https://github.com/nbatfai/SamuMovie)
+1. 5 gliders move in the input lattice in accordance with Conway's Game of Life (https://github.com/nbatfai/SamuLife)
+2. 9 simple "pictures" are shown (https://github.com/nbatfai/SamuStroop)
+3. a simple "film" is shown (https://github.com/nbatfai/SamuMovie)
 
 The agent must learn and recognize these complex patterns. It is shown in video at https://youtu.be/_W0Ep2HpJSQ
 
