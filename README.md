@@ -21,6 +21,7 @@ The agent must learn and recognize these complex patterns. It is shown in video 
 ```
 git clone https://github.com/nbatfai/SamuBrain.git
 cd SamuBrain/
+git checkout Q---learning
 ~/Qt/5.5/gcc_64/bin/qmake SamuLife.pro
 make
 ./SamuBrain 2>out
