@@ -42,7 +42,7 @@ tail -f out|grep "HABITUATION MONITOR"
 
 ## Experiments with this project
 
-### Q-- learning
+### v.0.0.1 Q-- learning
 
 It is important to note that this COP-based Q-learning (taggeb by "Q---learning") has become trivial because after a short starting period it chooses the Q-action that was passed in as the actual cell state argument. It means that the agent does not predict the future but the present.
 
