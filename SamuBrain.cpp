@@ -183,6 +183,7 @@ int SamuBrain::pred ( int **reality, int **predictions, int isLearning, int & vs
   return pred ( m_morgan, reality, predictions, isLearning, vsum );
 }
 
+/*
 int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLearning, int & vsum )
 {
 
@@ -270,6 +271,127 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
             }
 
           prev[r][c] = reality[r][c];
+
+          if ( isLearning>0 && predictions[r][c] == 0 )
+            {
+              predictions[r][c] = isLearning;
+            }
+
+        }
+
+    }
+
+  return sum;
+}
+*/
+
+int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLearning, int & vsum )
+{
+
+  MPU samuQl = morgan->getSamu();
+  int ** prev = morgan->getPrev();
+
+  //double img_input[40];
+  int colors[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  int sum {0};
+
+  vsum = 0;
+
+  for ( int r {0}; r<m_h; ++r )
+    {
+      for ( int c {0}; c<m_w; ++c )
+        {
+
+          std::stringstream ss;
+          int ii {0};
+
+          for ( int ci {0}; ci<5; ++ci )
+            {
+              colors[ci] = 0;
+            }
+
+          for ( int i {-1}; i<2; ++i )
+            for ( int j {-1}; j<2; ++j )
+
+              if ( ! ( ( i==0 ) && ( j==0 ) ) )
+
+                {
+                  int o = c + j;
+                  if ( o < 0 )
+                    {
+                      o = m_w-1;
+                    }
+                  else if ( o >= m_w )
+                    {
+                      o = 0;
+                    }
+
+                  int s = r + i;
+                  if ( s < 0 )
+                    {
+                      s = m_h-1;
+                    }
+                  else if ( s >= m_h )
+                    {
+                      s = 0;
+                    }
+
+                  ++colors[reality[s][o]];
+
+
+                } // if
+
+          ss << reality[r][c];
+          ss << '|';
+          ss << colors[0]; //img_input[1];
+          ss << '|';
+          ss << colors[1];
+          ss << '|';
+          ss << colors[2];
+          ss << '|';
+          ss << colors[3];
+          ss << '|';
+          ss << colors[4];
+
+          std::string prg = ss.str();
+
+          // with NNs
+          //SPOTriplet response = samuQl[r][c] ( lattice[r][c], prg, img_input );
+          // without
+
+          //  prev[r][c] = samuQl[r][c].action();// mintha a samuQl hívása után a predikciót mentettem volna el (B)
+          //predictions[r][c] =  prev[r][c];
+
+          SPOTriplet response = samuQl[r][c] ( reality[r][c], prg, isLearning == 0 );
+
+          if ( reality[r][c] )
+            //if ( ( predictions[r][c] == reality[r][c] ) && ( reality[r][c] != 0 ) )
+            {
+              ++vsum;
+              //if (  samuQl[r][c].reward() == samuQl[r][c].get_max_reward()/*reality[r][c] == prev[r][c]*/ )
+              if ( reality[r][c] == prev[r][c] )
+                {
+                  ++sum;
+                }
+            }
+
+          //prev[r][c] = reality[r][c];
+          prev[r][c] = predictions[r][c] = response;
+
+          // aligning to psamu1 paper // if ( ( predictions[r][c] == prev[r][c] ) && ( prev[r][c] != 0 ) )
+          /*
+          	  if ( ( reality[r][c] == prev[r][c] ) && ( prev[r][c] != 0 ) )
+          	  //if ( ( predictions[r][c] == reality[r][c] ) && ( reality[r][c] != 0 ) )
+                      {
+                        ++vsum;
+                        if ( samuQl[r][c].reward() == samuQl[r][c].get_max_reward() )
+                          {
+                            ++sum;
+                          }
+                      }
+          */
+          // aligning to psamu1 paper // prev[r][c] = reality[r][c];
+          // prev[r][c] = predictions[r][c];
 
           if ( isLearning>0 && predictions[r][c] == 0 )
             {

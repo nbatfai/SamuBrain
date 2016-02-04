@@ -140,9 +140,8 @@ void GameOfLife::run()
                        << "Observation (MPU):" << samuBrain->get_foobar().c_str();
             }
 
-          //latticeIndex = ( latticeIndex+1 ) %2;
-          emit cellsChanged ( lattices[latticeIndex], predictions );
           latticeIndex = ( latticeIndex+1 ) %2;
+          emit cellsChanged ( lattices[latticeIndex], predictions );
 
           qDebug() << ">>>" << m_time << ">>>";
 
@@ -249,22 +248,29 @@ void GameOfLife::control_Conway ( int **prevLattice, int **nextLattice )
 
 void GameOfLife::control_Movie ( int **nextLattice )
 {
-  if ( carx < m_w-5 )
+  if ( m_time %3 ==0 )
     {
-      carx += 2;
-    }
-  else
-    {
-      carx = 0;
+
+      if ( carx < m_w-5 )
+        {
+          carx += 2;
+        }
+      else
+        {
+          carx = 0;
+        }
     }
 
-  if ( manx < m_w-3 )
+  if ( m_time %6 ==0 )
     {
-      ++manx;
-    }
-  else
-    {
-      manx = 0;
+      if ( manx < m_w-3 )
+        {
+          ++manx;
+        }
+      else
+        {
+          manx = 0;
+        }
     }
 
   house ( nextLattice, housex, 3*m_h/5 -6 );
@@ -338,7 +344,7 @@ void GameOfLife::development()
       glider ( nextLattice, 2*m_w/5, 4*m_h/5 );
 
     }
-  else if ( m_time < 30000 )
+  else if ( m_time < 10000 )
     {
       control_Conway ( prevLattice, nextLattice );
     }

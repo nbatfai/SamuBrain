@@ -73,23 +73,25 @@ tail -f out|grep "HABITUATION MONITOR"
 
 [https://youtu.be/_W0Ep2HpJSQ](https://youtu.be/_W0Ep2HpJSQ)
 
+### v0.0.2-predicting-the-present-eliminated
+
 
 
 ## Previous other experiments
 
 Samu (Nahshon)
-http://arxiv.org/abs/1511.02889
+http://arxiv.org/abs/1511.02889,
 https://github.com/nbatfai/nahshon
 
 SamuLife
-https://github.com/nbatfai/SamuLife
+https://github.com/nbatfai/SamuLife,
 https://youtu.be/b60m__3I-UM
 
 SamuMovie
-https://github.com/nbatfai/SamuMovie
+https://github.com/nbatfai/SamuMovie,
 https://youtu.be/XOPORbI1hz4
 
 SamuStroop
-https://github.com/nbatfai/SamuStroop
-https://youtu.be/6elIla_bIrw
+https://github.com/nbatfai/SamuStroop,
+https://youtu.be/6elIla_bIrw,
 https://youtu.be/VujHHeYuzIk

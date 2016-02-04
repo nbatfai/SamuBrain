@@ -800,7 +800,7 @@ public:
         if ( triplet == prev_action ) {
             reinforced_action.first = prev_state;
             reinforced_action.second = prev_action;
-	}
+        }
 
         SPOTriplet action = triplet;
 
@@ -822,7 +822,7 @@ public:
             action = argmax_ap_f ( prg );
 
         }
-        
+
         prev_state = prg; 		// s <- s'
         prev_reward = reward;   	// r <- r'
         prev_action = action;	// a <- a'
@@ -835,19 +835,20 @@ public:
     double reward ( void ) {
         return prev_reward;
     }
-    
+
     SPOTriplet action ( void ) {
         return prev_action;
     }
-    
-    #ifdef FEELINGS
+
+#ifdef FEELINGS
     Feeling feeling ( void ) {
         return prev_feeling;
     }
 #endif
     double alpha ( int n ) {
 //        return 1.0/ ( ( ( double ) n ) + 1.0 );
-        return 1000000.0/ ( ( ( double ) n ) + 10001.0 );
+//        return 1000000.0/ ( ( ( double ) n ) + 10001.0 );
+        return 1000000.0/ ( ( ( double ) n ) + 700001.0 );
     }
 
     void clearn ( void ) {
@@ -1154,14 +1155,14 @@ private:
     std::string prev_state;
 
     double prev_reward { -std::numeric_limits<double>::max() };
-    
+
     /*
     double max_reward {13.1};
     double min_reward {-3.1};
     */
 
-    double max_reward {100.20};
-    double min_reward {-100.70};
+    double max_reward {10.20};
+    double min_reward {-10.70};
 
 #ifdef PLACE_VALUE
     double prev_image [10*3];
