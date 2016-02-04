@@ -21,6 +21,35 @@ The agent must learn and recognize these complex patterns. It is shown in video 
 ```
 git clone https://github.com/nbatfai/SamuBrain.git
 cd SamuBrain/
+~/Qt/5.5/gcc_64/bin/qmake SamuLife.pro
+make
+./SamuBrain 2>out
+```
+
+```
+tail -f out|grep "HIGHER-ORDER NOTION MONITOR"
+```
+
+```
+tail -f out|grep SENSITIZATION
+```
+
+```
+tail -f out|grep "HABITUATION MONITOR" 
+```
+
+
+
+## Experiments with this project
+
+### Q-- learning
+
+It is important to note that this COP-based Q-learning (taggeb by "Q---learning") has become trivial because after a short starting period it chooses the Q-action that was passed in as the actual cell state argument. It means that the agent does not predict the future but the present.
+
+
+```
+git clone https://github.com/nbatfai/SamuBrain.git
+cd SamuBrain/
 git checkout Q---learning
 ~/Qt/5.5/gcc_64/bin/qmake SamuLife.pro
 make
@@ -38,15 +67,15 @@ tail -f out|grep SENSITIZATION
 ```
 tail -f out|grep "HABITUATION MONITOR" 
 ```
+
+
 ![screenshot from 2016-01-30 21-50-44](https://cloud.githubusercontent.com/assets/3148120/12698416/fe0e6020-c79b-11e5-897c-1bb74afba1c3.png)
 
 [https://youtu.be/_W0Ep2HpJSQ](https://youtu.be/_W0Ep2HpJSQ)
 
 
-It is important to note that this COP-based Q-learning (taggeb by "Q---learning") has become trivial because after a short starting period it chooses the Q-action that was passed in as the actual cell state argument. It means that the agent does not predict the future but the present.
 
-
-## Previous experiments
+## Previous other experiments
 
 Samu (Nahshon)
 http://arxiv.org/abs/1511.02889
