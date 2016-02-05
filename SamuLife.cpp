@@ -53,7 +53,7 @@
 
 SamuLife::SamuLife ( int w, int h, QWidget *parent ) : QMainWindow ( parent )
 {
-  setWindowTitle ( "SamuBrain, exp. 4, cognitive mental organs: MPU (Mental Processing Unit), Q-- lerning, acquiring higher-order knowledge" );
+  setWindowTitle ( "SamuBrain, exp. 4, cognitive mental organs: MPU (Mental Processing Unit), COP-based Q-learning, acquiring higher-order knowledge" );
   setFixedSize ( QSize ( 2*w*m_cw, h*m_ch ) );
 
   gameOfLife = new GameOfLife ( w, h );

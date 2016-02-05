@@ -797,11 +797,6 @@ public:
             //3.0*triplet.cmp ( prev_action ) - 1.5;
             ( triplet == prev_action ) ?max_reward:min_reward;
 
-        if ( triplet == prev_action ) {
-            reinforced_action.first = prev_state;
-            reinforced_action.second = prev_action;
-        }
-
         SPOTriplet action = triplet;
 
         if ( prev_reward >  -std::numeric_limits<double>::max() ) {
@@ -826,7 +821,7 @@ public:
         prev_state = prg; 		// s <- s'
         prev_reward = reward;   	// r <- r'
         prev_action = action;	// a <- a'
-
+        
         return action;
     }
 
@@ -846,9 +841,9 @@ public:
     }
 #endif
     double alpha ( int n ) {
-//        return 1.0/ ( ( ( double ) n ) + 1.0 );
-//        return 1000000.0/ ( ( ( double ) n ) + 10001.0 );
-        return 1000000.0/ ( ( ( double ) n ) + 700001.0 );
+      
+        return 1.0/ ( ( ( double ) n ) + 1.0 );
+
     }
 
     void clearn ( void ) {

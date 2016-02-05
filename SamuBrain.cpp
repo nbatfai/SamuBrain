@@ -495,9 +495,10 @@ bool Habituation::is_habituation ( int vsum, int sum, double &mon )
 
   if ( q != 0
        && q == w
+/*
        && e != 0
        && e == r
-       && t == z
+       && t == z*/
      )
     {
 
@@ -685,7 +686,7 @@ void SamuBrain::learning ( int **reality, int **predictions )
                    << "bogocertainty of convergence:"
                    << mon*100 << "%";
 
-          if ( h.is_newinput ( vsum, sum ) && !m_habituation && mon != -1.0  && mon != 1.0 )
+          if ( h.is_newinput ( vsum, sum ) && !m_habituation && mon != -1.0  /*&& mon != 1.0*/ )
             {
               qDebug() << "   SENSITIZATION MONITOR:"
                        << m_internal_clock

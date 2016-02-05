@@ -68,7 +68,7 @@ class Habituation
         4000
     };
     static const int error_limit {
-        2
+        7
     };
 
     constexpr static int ma_limit {3};

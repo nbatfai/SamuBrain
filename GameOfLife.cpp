@@ -348,11 +348,11 @@ void GameOfLife::development()
     {
       control_Conway ( prevLattice, nextLattice );
     }
-  else if ( m_time < 65000 )
+  else if ( m_time < 25000 )
     {
       control_Stroop ( nextLattice );
     }
-  else if ( m_time < 100000 )
+  else if ( m_time < 45000 )
     {
       control_Movie ( nextLattice );
     }
