@@ -75,6 +75,10 @@ tail -f out|grep "HABITUATION MONITOR"
 
 ### v0.0.2-predicting-the-present-eliminated
 
+This is the improved version of the previous one.
+
+[https://youtu.be/FkyxxCfQeiY](https://youtu.be/FkyxxCfQeiY)
+
 
 
 ## Previous other experiments
