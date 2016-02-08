@@ -80,6 +80,11 @@ This is the improved version of the previous one.
 [https://youtu.be/FkyxxCfQeiY](https://youtu.be/FkyxxCfQeiY)
 
 
+### The branch 'analytics'
+
+![screenshot from 2016-02-08 19-57-05](https://cloud.githubusercontent.com/assets/3148120/12895739/33a73c26-ce9e-11e5-9131-ab03cd090877.png)
+
+[https://youtu.be/NXKdjKCSFG4](https://youtu.be/NXKdjKCSFG4)
 
 ## Previous other experiments
 
