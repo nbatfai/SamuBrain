@@ -65,7 +65,8 @@ class Habituation
     int err {0};
 
     static const int convergence_limit {
-        4000
+        //4000
+        300
     };
     static const int error_limit {
         7
@@ -108,6 +109,8 @@ class MentalProcessingUnit
     Habituation m_habi;
 
     int **m_prev;
+    int** fr;
+    int** fp;
 
 public:
     MentalProcessingUnit ( int w = 30, int h = 20 );
@@ -119,9 +122,17 @@ public:
     int ** getPrev() {
         return m_prev;
     }
+    int ** getFp() {
+        return fp;
+    }
+    int ** getFr() {
+        return fr;
+    }
     Habituation& getHabituation() {
         return m_habi;
     }
+
+    void cls();
 
 };
 
@@ -129,7 +140,6 @@ typedef MentalProcessingUnit* MORGAN;
 
 class SamuBrain
 {
-
 
     int m_w {40};
     int m_h {30};
@@ -151,11 +161,14 @@ class SamuBrain
     void init_MPUs ( bool ex );
     std::string get_foobar ( MORGAN ) const;
 
+    int *** fp;
+    int *** fr;
+
 public:
     SamuBrain ( int w = 30, int h = 20 );
     ~SamuBrain();
 
-    void learning ( int **reality, int **predictions );
+    void learning ( int **reality, int **predictions, int*** fp, int *** fr );
     int getW() const;
     int getH() const;
     bool isSearching() const;

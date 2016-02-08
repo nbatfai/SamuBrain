@@ -54,20 +54,22 @@
 SamuLife::SamuLife ( int w, int h, QWidget *parent ) : QMainWindow ( parent )
 {
   setWindowTitle ( "SamuBrain, exp. 4, cognitive mental organs: MPU (Mental Processing Unit), COP-based Q-learning, acquiring higher-order knowledge" );
-  setFixedSize ( QSize ( 2*w*m_cw, h*m_ch ) );
+  setFixedSize ( QSize ( 2*w*m_cw, 2*h*m_ch ) );
 
   gameOfLife = new GameOfLife ( w, h );
   gameOfLife->start();
 
-  connect ( gameOfLife, SIGNAL ( cellsChanged ( int **, int ** ) ),
-            this, SLOT ( updateCells ( int **, int ** ) ) );
+  connect ( gameOfLife, SIGNAL ( cellsChanged ( int **, int **, int **, int ** ) ),
+            this, SLOT ( updateCells ( int **, int **, int **, int ** ) ) );
 
 }
 
-void SamuLife::updateCells ( int **lattice, int **prediction )
+void SamuLife::updateCells ( int **lattice, int **prediction, int **fp, int** fr )
 {
   this->lattice = lattice;
   this->prediction = prediction;
+  this->fp = fp;
+  this->fr = fr;
   update();
 }
 
@@ -119,7 +121,33 @@ void SamuLife::paintEvent ( QPaintEvent* )
                 qpainter.fillRect ( gameOfLife->getW() *m_cw + j*m_cw, i*m_ch,
                                     m_cw, m_ch, Qt::white );
             }
-          qpainter.setPen ( QPen ( Qt::lightGray, 1 ) );
+
+            
+          if ( fp )
+            {
+                qpainter.fillRect ( gameOfLife->getW() *m_cw + j*m_cw, 
+				    gameOfLife->getH() *m_ch + i*m_ch,
+                                    m_cw, m_ch, qRgb(fp[i][j] ,0,0) );
+            }
+            
+          if ( fr )
+            {
+                qpainter.fillRect (  j*m_cw, 
+				    gameOfLife->getH() *m_ch + i*m_ch,
+                                    m_cw, m_ch, qRgb(fr[i][j]*18 ,0,0) );
+		
+		
+		
+qpainter.setPen(QPen(Qt::white, 1));
+                    qpainter.drawText(j*m_cw +2, 
+				    gameOfLife->getH() *m_ch + i*m_ch +17, 
+				      QString::number(fr[i][j]));
+		
+            }
+
+
+            
+            qpainter.setPen ( QPen ( Qt::lightGray, 1 ) );
 
           qpainter.drawRect ( j*m_cw, i*m_ch,
                               m_cw, m_ch );

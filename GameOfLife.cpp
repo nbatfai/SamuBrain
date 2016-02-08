@@ -119,6 +119,8 @@ int ** GameOfLife::lattice()
 
 void GameOfLife::run()
 {
+  
+  int **fp, **fr;
   while ( true )
     {
       QThread::msleep ( m_delay );
@@ -134,14 +136,14 @@ void GameOfLife::run()
 
           if ( samuBrain )
             {
-              samuBrain->learning ( lattices[latticeIndex], predictions );
+              samuBrain->learning ( lattices[latticeIndex], predictions, &fp, &fr );
               qDebug() << m_time
                        << "   #MPUs:" << samuBrain->nofMPUs()
                        << "Observation (MPU):" << samuBrain->get_foobar().c_str();
             }
 
           latticeIndex = ( latticeIndex+1 ) %2;
-          emit cellsChanged ( lattices[latticeIndex], predictions );
+          emit cellsChanged ( lattices[latticeIndex], predictions, fp, fr );
 
           qDebug() << ">>>" << m_time << ">>>";
 
@@ -344,15 +346,15 @@ void GameOfLife::development()
       glider ( nextLattice, 2*m_w/5, 4*m_h/5 );
 
     }
-  else if ( m_time < 10000 )
+  else if ( m_time < 5000 )
     {
       control_Conway ( prevLattice, nextLattice );
     }
-  else if ( m_time < 25000 )
+  else if ( m_time < 13000 )
     {
       control_Stroop ( nextLattice );
     }
-  else if ( m_time < 45000 )
+  else if ( m_time < 22000 )
     {
       control_Movie ( nextLattice );
     }

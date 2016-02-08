@@ -118,7 +118,7 @@ public:
     }
 
 signals:
-    void cellsChanged ( int **, int ** );
+    void cellsChanged ( int **, int **, int **, int ** );
 
 };
 
