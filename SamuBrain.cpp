@@ -192,9 +192,9 @@ double SamuBrain::howMuchLearned ( MPU samuQl ) const
 }
 */
 
-int SamuBrain::pred ( int **reality, int **predictions, int isLearning, int & vsum )
+int SamuBrain::pred ( int **reality, int **predictions, int isLearning, int & vsum, bool b )
 {
-  return pred ( m_morgan, reality, predictions, isLearning, vsum );
+  return pred ( m_morgan, reality, predictions, isLearning, vsum, b );
 }
 
 /*
@@ -299,7 +299,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 }
 */
 
-int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLearning, int & vsum )
+int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLearning, int & vsum, bool isRules )
 {
 
   MPU samuQl = morgan->getSamu();
@@ -378,7 +378,7 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
           //  prev[r][c] = samuQl[r][c].action();// mintha a samuQl hívása után a predikciót mentettem volna el (B)
           //predictions[r][c] =  prev[r][c];
 
-          SPOTriplet response = samuQl[r][c] ( reality[r][c], prg, isLearning == 0 );
+          SPOTriplet response = samuQl[r][c] ( reality[r][c], prg, isLearning == 0,  isRules );
 
           if ( reality[r][c] )
             //if ( ( predictions[r][c] == reality[r][c] ) && ( reality[r][c] != 0 ) )
@@ -623,7 +623,7 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
 
           MORGAN morgan = mpu.second;
 
-          sum = pred ( morgan, reality, predictions, 4, vsum );
+          sum = pred ( morgan, reality, predictions, 4, vsum, rules );
 
           double mon {-1.0};
           Habituation &h = morgan->getHabituation();
@@ -639,6 +639,7 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
           if ( habi || mon >= .9 )
             {
               maxSamuQl = mpu.second;
+	      rules = true;
             }
 
         } // for MPUs
@@ -690,7 +691,7 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
     {
 
       //sum = pred ( reality, predictions, !searching, vsum ); //!haveAlreadyLearnt, vsum );
-      sum = pred ( reality, predictions, m_haveAlreadyLearnt?5:0, vsum );
+      sum = pred ( reality, predictions, m_haveAlreadyLearnt?5:0, vsum, rules );
 
       double mon {-1.0};
       Habituation& h = m_morgan->getHabituation();
@@ -723,6 +724,8 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
                        << "(learning time)"
                        << t;
 
+		       rules = false;
+		       
             }
 
         }

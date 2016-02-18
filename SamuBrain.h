@@ -156,13 +156,15 @@ class SamuBrain
     bool m_habituation {false};
 
     MORGAN newMPU ();
-    int pred ( int **reality, int **predictions, int, int & );
-    int pred ( MORGAN, int **reality, int **predictions, int, int & );
+    int pred ( int **reality, int **predictions, int, int &, bool );
+    int pred ( MORGAN, int **reality, int **predictions, int, int &, bool );
     void init_MPUs ( bool ex );
     std::string get_foobar ( MORGAN ) const;
 
     int *** fp;
     int *** fr;
+    
+    bool rules{false};
 
 public:
     SamuBrain ( int w = 30, int h = 20 );

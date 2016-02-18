@@ -788,7 +788,7 @@ public:
         return ap;
     }
 
-    SPOTriplet operator() ( SPOTriplet triplet, std::string prg, bool isLearning ) {
+    SPOTriplet operator() ( SPOTriplet triplet, std::string prg, bool isLearning, bool addRules ) {
 
         // s' = triplet
         // r' = reward
@@ -813,15 +813,15 @@ public:
 
             if ( isLearning ) {
 
+                /*
+                                if ( triplet == prev_action ) {
+                                    reinforced_action.first = prev_state;
+                                    reinforced_action.second = prev_action;
 
-                if ( triplet == prev_action ) {
-                    reinforced_action.first = prev_state;
-                    reinforced_action.second = prev_action;
+                                    ++rules[reinforced_action];
 
-                    ++rules[reinforced_action];
-
-                }
-
+                                }
+                */
                 ++frqs[prev_action][prev_state];
 
                 table_[triplet][prg] = table_[triplet][prg];
@@ -833,6 +833,15 @@ public:
                     alpha ( frqs[prev_action][prev_state] ) *
                     ( reward + gamma * max_ap_q_sp_ap - table_[prev_action][prev_state] );
             }
+
+            if ( addRules && triplet == prev_action ) {
+                reinforced_action.first = prev_state;
+                reinforced_action.second = prev_action;
+
+                ++rules[reinforced_action];
+
+            }
+
 
             action = argmax_ap_f ( prg );
 
