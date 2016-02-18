@@ -797,11 +797,31 @@ public:
             //3.0*triplet.cmp ( prev_action ) - 1.5;
             ( triplet == prev_action ) ?max_reward:min_reward;
 
+        /*
+                if ( triplet == prev_action ) {
+                    reinforced_action.first = prev_state;
+                    reinforced_action.second = prev_action;
+
+        	    ++rules[reinforced_action];
+
+        	}
+        */
+
         SPOTriplet action = triplet;
 
         if ( prev_reward >  -std::numeric_limits<double>::max() ) {
 
             if ( isLearning ) {
+
+
+                if ( triplet == prev_action ) {
+                    reinforced_action.first = prev_state;
+                    reinforced_action.second = prev_action;
+
+                    ++rules[reinforced_action];
+
+                }
+
                 ++frqs[prev_action][prev_state];
 
                 table_[triplet][prg] = table_[triplet][prg];
@@ -821,7 +841,7 @@ public:
         prev_state = prg; 		// s <- s'
         prev_reward = reward;   	// r <- r'
         prev_action = action;	// a <- a'
-        
+
         return action;
     }
 
@@ -841,7 +861,7 @@ public:
     }
 #endif
     double alpha ( int n ) {
-      
+
         return 1.0/ ( ( ( double ) n ) + 1.0 );
 
     }
@@ -1043,6 +1063,10 @@ public:
         return reinforced_action;
     }
 
+    int getNumRules() const {
+        return rules.size();
+    }
+
 
 private:
 
@@ -1172,6 +1196,7 @@ private:
 #endif
 
     ReinforcedAction reinforced_action {"unreinforced", -1};
+    std::map<ReinforcedAction, int> rules;
 };
 
 #endif

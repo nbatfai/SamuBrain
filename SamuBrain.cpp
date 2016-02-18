@@ -79,17 +79,31 @@ MentalProcessingUnit::MentalProcessingUnit ( int w, int h ) : m_w ( w ), m_h ( h
     }
 
   m_prev = new int*[m_h];
+  fp = new int*[m_h];
+  fr = new int*[m_h];
+
   for ( int i {0}; i<m_h; ++i )
     {
       m_prev[i] = new int [m_w];
+      fp[i] = new int [m_w];
+      fr[i] = new int [m_w];
     }
 
   for ( int r {0}; r<m_h; ++r )
     for ( int c {0}; c<m_w; ++c )
       {
-        m_prev[r][c] = 0;
+        fr[r][c] =fp[r][c] = m_prev[r][c] = 0;
       }
 
+}
+
+void MentalProcessingUnit::cls ( )
+{
+  for ( int r {0}; r<m_h; ++r )
+    for ( int c {0}; c<m_w; ++c )
+      {
+        fr[r][c] =fp[r][c] = m_prev[r][c] = 0;
+      }
 }
 
 MentalProcessingUnit::~MentalProcessingUnit ( )
@@ -290,6 +304,8 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
 
   MPU samuQl = morgan->getSamu();
   int ** prev = morgan->getPrev();
+  int ** fp = morgan->getFp();
+  int ** fr = morgan->getFr();
 
   //double img_input[40];
   int colors[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -372,8 +388,33 @@ int SamuBrain::pred ( MORGAN morgan, int **reality, int **predictions, int isLea
               if ( reality[r][c] == prev[r][c] )
                 {
                   ++sum;
+//		  if(!isLearning)
+//		  ++fp[r][c];
                 }
             }
+
+          // if ( !isLearning )
+          {
+
+            if ( reality[r][c] == prev[r][c] )
+              {
+                if ( fp[r][c] < 255-60 )
+                  {
+                    fp[r][c]+=60;
+                  }
+              }
+            else
+              {
+                if ( fp[r][c] > 60 )
+                  {
+                    fp[r][c]-=60;
+                  }
+              }
+
+
+            fr[r][c] = samuQl[r][c].getNumRules();
+
+          }
 
           //prev[r][c] = reality[r][c];
           prev[r][c] = predictions[r][c] = response;
@@ -495,10 +536,10 @@ bool Habituation::is_habituation ( int vsum, int sum, double &mon )
 
   if ( q != 0
        && q == w
-/*
-       && e != 0
-       && e == r
-       && t == z*/
+       /*
+              && e != 0
+              && e == r
+              && t == z*/
      )
     {
 
@@ -559,8 +600,10 @@ bool Habituation::is_habituation ( int vsum, int sum, double &mon )
 }
 
 
-void SamuBrain::learning ( int **reality, int **predictions )
+void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***fr )
 {
+  this->fp = fp;
+  this->fr = fr;
 
   ++m_internal_clock;
 
@@ -569,6 +612,9 @@ void SamuBrain::learning ( int **reality, int **predictions )
 
   if ( m_searching )
     {
+
+      * ( this->fp ) = nullptr ;
+      * ( this->fr ) = nullptr ;
 
       MORGAN maxSamuQl {nullptr};
 
@@ -633,6 +679,10 @@ void SamuBrain::learning ( int **reality, int **predictions )
           m_searching = false;
           m_haveAlreadyLearnt = false;
           m_haveAlreadyLearntTime = m_internal_clock;
+
+
+
+
         }
 
     }//searching
@@ -701,6 +751,10 @@ void SamuBrain::learning ( int **reality, int **predictions )
 
         }
 
+      * ( this->fp ) = m_morgan->getFp();
+      * ( this->fr ) = m_morgan->getFr();
+
+
     }
 
 }
@@ -713,6 +767,8 @@ void SamuBrain::init_MPUs ( bool ex )
 
       MORGAN morgan = mpu.second;
 
+
+
       if ( ex )
         {
           if ( mpu.second != m_morgan )
@@ -724,6 +780,8 @@ void SamuBrain::init_MPUs ( bool ex )
         {
           morgan->getHabituation().clear();
         }
+
+      morgan->cls();
 
     }
 
