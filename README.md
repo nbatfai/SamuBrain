@@ -104,3 +104,6 @@ SamuStroop
 https://github.com/nbatfai/SamuStroop,
 https://youtu.be/6elIla_bIrw,
 https://youtu.be/VujHHeYuzIk
+
+SamuCopy
+https://github.com/nbatfai/SamuCopy
