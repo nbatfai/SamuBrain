@@ -639,7 +639,6 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
           if ( habi || mon >= .9 )
             {
               maxSamuQl = mpu.second;
-	      rules = true;
             }
 
         } // for MPUs
@@ -674,6 +673,8 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
                        << t;
 
             }
+
+          rules = true;
 
           init_MPUs ( true );
 
@@ -724,8 +725,8 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
                        << "(learning time)"
                        << t;
 
-		       rules = false;
-		       
+              rules = false;
+
             }
 
         }
@@ -744,6 +745,8 @@ void SamuBrain::learning ( int **reality, int **predictions, int ***fp, int ***f
               qDebug() << "   SENSITIZATION MONITOR:"
                        << m_internal_clock
                        << "(new input detected)";
+
+              //rules = true;
 
               m_searching = true;
               m_searchingStart = m_internal_clock;

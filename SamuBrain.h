@@ -164,7 +164,7 @@ class SamuBrain
     int *** fp;
     int *** fr;
     
-    bool rules{false};
+    bool rules{true};
 
 public:
     SamuBrain ( int w = 30, int h = 20 );

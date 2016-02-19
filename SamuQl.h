@@ -833,7 +833,7 @@ public:
                     alpha ( frqs[prev_action][prev_state] ) *
                     ( reward + gamma * max_ap_q_sp_ap - table_[prev_action][prev_state] );
             }
-
+///*
             if ( addRules && triplet == prev_action ) {
                 reinforced_action.first = prev_state;
                 reinforced_action.second = prev_action;
@@ -841,7 +841,7 @@ public:
                 ++rules[reinforced_action];
 
             }
-
+//*/
 
             action = argmax_ap_f ( prg );
 
