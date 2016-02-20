@@ -107,3 +107,6 @@ https://youtu.be/VujHHeYuzIk
 
 SamuCopy
 https://github.com/nbatfai/SamuCopy
+
+SamuTicker
+https://github.com/nbatfai/Ticker
