@@ -109,4 +109,4 @@ SamuCopy
 https://github.com/nbatfai/SamuCopy
 
 SamuTicker
-https://github.com/nbatfai/Ticker
+https://github.com/nbatfai/SamuTicker
