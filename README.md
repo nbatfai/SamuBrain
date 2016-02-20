@@ -110,3 +110,6 @@ https://github.com/nbatfai/SamuCopy
 
 SamuTicker
 https://github.com/nbatfai/SamuTicker
+
+SamuVocab
+https://github.com/nbatfai/SamuVocab
