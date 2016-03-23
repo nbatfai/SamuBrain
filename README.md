@@ -125,5 +125,7 @@ https://github.com/nbatfai/SamuCam
 
 ![samucam1-nandi4](https://cloud.githubusercontent.com/assets/3148120/14001514/91fbb354-f146-11e5-9a0a-5d551bee494a.png)
 
+![samucam1-nandi7](https://cloud.githubusercontent.com/assets/3148120/14001569/e5268d56-f146-11e5-9f6b-f4fbf6c007e2.png)
+
 Robopsychology One
 https://github.com/nbatfai/Robopsychology
