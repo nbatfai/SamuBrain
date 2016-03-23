@@ -117,3 +117,13 @@ https://github.com/nbatfai/SamuTicker
 
 SamuVocab
 https://github.com/nbatfai/SamuVocab
+
+--- 
+
+SamuCam
+https://github.com/nbatfai/SamuCam
+
+![samucam1-nandi4](https://cloud.githubusercontent.com/assets/3148120/14001514/91fbb354-f146-11e5-9a0a-5d551bee494a.png)
+
+Robopsychology One
+https://github.com/nbatfai/Robopsychology
